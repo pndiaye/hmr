@@ -20,6 +20,7 @@ from __future__ import division
 from __future__ import print_function
 
 import sys
+sys.path.insert(0,'/tensorflow-1.15.2/python2.7')
 from absl import flags
 import numpy as np
 
@@ -191,7 +192,7 @@ def main(img_path, json_path=None):
 def join_csv():
   path = 'hmr/output/csv/'                   
   all_files = glob.glob(os.path.join(path, "*.csv"))
-  all_files.sort(key=lambda x: int(x.split('/')[-1].split('.')[0]))
+  all_files.sort(key=lambda x: x.split('/')[-1].split('.')[0])
   df_from_each_file = (pd.read_csv(f) for f in all_files)
   concatenated_df   = pd.concat(df_from_each_file, ignore_index=True)
 
